@@ -10,14 +10,31 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        NavigationView {
+            List {
+                ForEach(1 ... 10, id: \.self) { index in
+                    NavigationLink(destination: DetailView(value: index)) {
+                        Text("Link \(index)")
+                    }
+                }
+
+            }
+        }
+        .listStyle(SidebarListStyle())
     }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct DetailView: View {
+    var value: Int
+    
+    var body: some View {
+        Text("Detail Link for index " + String(value))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
