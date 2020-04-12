@@ -10,9 +10,11 @@ import SwiftUI
 import WebKit
 
 struct TestView : NSViewRepresentable {
+    var value: String
     func makeNSView(context: Context) -> WKWebView  {
         let view = WKWebView()
-        if let url = URL(string: "https://www.google.com/") {
+//        if let url = URL(string: "https://www.duckduckgo.com/") {
+        if let url = URL(string: value) {
             view.load(URLRequest(url: url))
         }
         return view
@@ -26,8 +28,7 @@ struct TestView : NSViewRepresentable {
 
 struct ContentView: View {
     var body: some View {
-        TestView()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        TestView(value: "https://www.duckduckgo.com/")
     }
 }
 
